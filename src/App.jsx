@@ -1,5 +1,5 @@
 import { useCallback, useLayoutEffect, useState } from "react";
-
+import writtenNumber from "written-number";
 import MenuItem from "./components/MenuItem";
 import { gsap } from "gsap";
 import enfeite from "./assets/img/Enfeite.png"
@@ -8,18 +8,40 @@ import { ScrollTrigger } from "gsap/all";
 export default function App() {
 
   const [indexOpen, setIndexOpen] = useState(false)
+  const anoAtual = new Date().getFullYear()
 
-  useLayoutEffect(()=> {
+
+  const anoExperiencia = writtenNumber((anoAtual - 2021), { lang: "pt" })
+
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
+      const animStart = {
+        opacity: 0,
+        display: "none"
+      };
+
+      const animEnd = {
+        opacity: 1,
+        display: "flex",
+        duration: 0.6 // tempo da animação de entrada
+      };
+
+      const animExit = {
+        opacity: 0,
+        duration: 0.5,
+        display: "none"
+      };
+
     const linhaDoTempo = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".scrollReferenc",
-            start: "top top",
-            end: "+=2000",
-            pin: true,
-            scrub: 2,
-        }
+      scrollTrigger: {
+        trigger: ".scrollReferenc",
+        start: "top top",
+        end: "+=2500",
+        markers: true,
+        pin: true,
+        scrub: 2,
+      }
     });
 
     linhaDoTempo.to(".divBranca", {
@@ -29,69 +51,66 @@ export default function App() {
       borderRadius: 0,
     })
 
-    linhaDoTempo.fromTo(".h2MeConheca", 
-      {
-        opacity: 0,
-        duration: 0
-      }, { 
-        opacity: 1, 
+    linhaDoTempo.fromTo(".h2MeConheca", animStart, animEnd)
+
+    linhaDoTempo.to(".h2MeConheca", animExit)
+
+    linhaDoTempo.fromTo(".sobreMim", animStart, animEnd)
+
+    linhaDoTempo.to(".sobreMim", animExit)
+
+    const projetos = document.querySelectorAll(".projetos")
+
+    projetos.forEach((element, index) => {
+      const img = element.querySelector("img")
+
+      linhaDoTempo.fromTo(img,
+        {
+          xPercent: 100,
+          rotate: 340,
+          right: 0,
+          display: "none"
+        },
+        {
+          xPercent: 0,
+          right: "auto",
+          rotate: 360,
+          display: "flex"
+        }
+      )
+
+      linhaDoTempo.fromTo(element,
+        {
+          display: "none"
+        },
+        {
+          display: "flex"
+        },
+        "<"
+      )
+      console.log(projetos.length)
+      console.log(index)
+      if ((projetos.length - 1) != index) {
+        linhaDoTempo.to(img,
+          {
+            xPercent: 100,
+            rotate: 340,
+            opacity: 0,
+            display: "none"
+          }
+        )
+        linhaDoTempo.to(element,
+          {
+            display: "none",
+            opacity: 0
+          },
+          "<"
+        )
       }
-    )
-
-    linhaDoTempo.to(".h2MeConheca", 
-      {
-        opacity: 0,
-        display: "none"
-      }
-    )
 
 
-    // const projetos = document.querySelectorAll(".projetos")
 
-    // projetos.forEach(element => {
-    //   const img = element.querySelector("img")
-    //   linhaDoTempo.fromTo(img, 
-    //     {
-    //       xPercent: 100,
-    //       rotate: 340,
-    //       right: 0,
-    //       display:"none"
-    //     },
-    //     {
-    //       xPercent: 0,
-    //       right: "auto",
-    //       rotate: 360,
-    //       display: "flex"
-    //     } 
-    //   )
-
-    //   linhaDoTempo.fromTo(element, 
-    //     {
-    //       display:"none"
-    //     },
-    //     {
-    //       display: "flex"
-    //     },
-    //     "<"
-    //   )
-
-    //   linhaDoTempo.to(img, 
-    //     {
-    //       xPercent: 100,
-    //       rotate: 340,
-    //       opacity:0,
-    //       display: "none"
-    //     } 
-    //   )
-    //   linhaDoTempo.to(element, 
-    //     {
-    //       display:"none",
-    //       opacity: 0
-    //     },
-    //     "<"
-    //   )
-      
-    // });
+    });
 
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
@@ -103,54 +122,57 @@ export default function App() {
   const onToggleModal = useCallback((index) => {
     setIndexOpen(indexOpen === index ? null : index)
   }, [indexOpen])
-    
-  
+
+
 
   return (
-    <>
-      <section className="scrollReferenc flex justify-center w-full h-screen bg-[#08081E] relative perspective-[3000px] perspective-origin-[50%_76%] overflow-hidden ">
+    <main>
+      <section className="scrollReferenc flex flex-col justify-center w-full h-screen bg-azul-escuro relative perspective-[3000px] perspective-origin-[50%_76%] overflow-hidden ">
         <div className="flex justify-center w-full overflow-hidden relative">
           <div className="lg:w-[calc(50%+1px)] max-lg:min-w-[80vw] mix-blend-color-dodge h-[150vh] bg-[conic-gradient(from_90deg_at_50%_50%,#F8F8F8_0deg,_#0C0C0C_20deg,#B1B1B1_100deg,#B1B1B1_120deg,#BDBDBD_210deg,#F8F8F8_360deg)]"></div>
           <div className="lg:w-[50%] max-lg:min-w-[80vw] scale-x-[-1] mix-blend-color-dodge h-[150vh] bg-[conic-gradient(from_90deg_at_50%_50%,#F8F8F8_0deg,_#0C0C0C_20deg,#B1B1B1_100deg,#B1B1B1_120deg,#BDBDBD_210deg,#F8F8F8_360deg)]"></div>
-          <div className="absolute inset-0 bg-linear-to-b from-[#08081E] via-70% via-[rgba(8,8,30,0.00)] to-[#08081E] w-screen h-screen"></div>
+          <div className="absolute inset-0 bg-linear-to-b from-azul-escuro via-70% via-[rgba(8,8,30,0.00)] to-azul-escuro w-screen h-screen"></div>
 
         </div>
-          <div className="absolute top-[8vh] left-[8vw] right-[8vw] flex flex-row items-center text-base justify-between text-white/60">
+        <div className="absolute top-[8vh] left-[8vw] right-[8vw] flex flex-row items-center text-base justify-between text-white/60">
 
-            <nav aria-label="Navegação principal">
-              <ul className="flex items-center gap-x-3">
-                <li>
-                  <MenuItem 
-                    title="Sobre" 
-                    link={() => onToggleModal(1)}
-                    isOpen={indexOpen === 1} 
-                  />
-                </li>
+          <nav aria-label="Navegação principal">
+            <ul className="flex items-center gap-x-3">
+              <li>
+                <MenuItem
+                  title="Contato"
+                  link={() => onToggleModal(1)}
+                  isOpen={indexOpen === 1}
+                >
+                  Chora na pindola
+                </MenuItem>
+              </li>
 
-                <li>
-                  <MenuItem 
-                    title="GitHub" 
-                    link={() => onToggleModal(2)}
-                    isOpen={indexOpen === 2} 
-                  />
-                </li>
+              <li>
+                <MenuItem
+                  title="GitHub"
+                  link={() => onToggleModal(2)}
+                  isOpen={indexOpen === 2}
+                />
+                
+              </li>
 
-                <li>
-                  <MenuItem 
-                    title="Chora2" 
-                    link="https://www.instagram.com/reel/DNjbKeLxeAb/?igsh=aWV5MXo2c2phcmgw" 
-                    openNewTab
-                  />
-                </li>
-              </ul>
+              <li>
+                <MenuItem
+                  title="Chora2"
+                  link="https://www.instagram.com/reel/DNjbKeLxeAb/?igsh=aWV5MXo2c2phcmgw"
+                  openNewTab
+                />
+              </li>
+            </ul>
 
-            </nav>
+          </nav>
 
-            <p>
-              Rafael G. Oliveira
-            </p>
-          </div>
-        <h1 className="absolute font-Montserrat font-medium bottom-[36%] mix-blend-color-dodge left-1/2 transform text-[#aaaaaa] w-full -translate-x-1/2 text-[5.5vw] lg:leading-[12vh] text-center ">A melhor versão do <br></br>Seu próximo Projeto</h1>
+          <p>
+            Rafael G. Oliveira
+          </p>
+        </div>
+        <h1 className="absolute font-Montserrat font-semibold bottom-[36%] mix-blend-color-dodge left-1/2 transform text-[#aaaaaa] w-full -translate-x-1/2 text-[5.5vw] lg:leading-[12vh] text-center ">DESENVOLVEDOR WEB</h1>
 
         <section className="flex justify-center items-center absolute bottom-[8vh] right-[calc(8vw+50px)] z-10">
           <div className="border-2 border-white/60 w-10 h-16 rounded-3xl flex justify-center relative">
@@ -163,27 +185,58 @@ export default function App() {
             Scroll down
           </p>
         </section>
-          
-        <section className="divBranca absolute w-screen bg-white text-black h-screen rotate-x-[90deg] rounded-[60px] scale-x-[0.42] top-[25vh]">
-          <div className="flex justify-center items-center h-screen w-full">
-            <h2 className="h2MeConheca">
+
+        <section className="divBranca absolute w-screen bg-white text-black min-h-screen h-auto rotate-x-[90deg] rounded-[60px] scale-x-[0.42] top-[25vh] overflow-x-hidden">
+          <div className="flex flex-col justify-center items-center h-screen w-full">
+            <h2 className="h2MeConheca text-3xl lg:text-5xl font-semibold text-azul-escuro text-center mb-8">
               Me conheça um pouco mais
             </h2>
 
-            <div className="projetos">
-              <h3>Projeto 1</h3>
-              <img src={enfeite} alt=""  className="left-0 transform translate-x-full"/>
+            <div className="sobreMim flex flex-col lg:flex-row">
+              <div>
+                <h3>Sobre mim</h3>
+                <p>
+                  Me chamo Rafael Gomes de Oliveira, sou Desenvolvedor Web Front-End Júnior e tenho paixão por criar interfaces modernas, dinâmicas e centradas na experiência do usuário. Possuo experiência com a plataforma de e-commerce Wake, e sou formado em Técnico em Informática para a Internet pelo Instituto Federal Baiano - Campus Guanambi. Atualmente, dedico meus estudos ao React, GSAP, CSS avançado e Tailwind, buscando consolidar minhas habilidades em desenvolvimento de aplicações web.
+                </p>
+                <p>                 
+                  Atuo há {anoExperiencia} anos na área. Além do lado técnico, me considero uma pessoa colaborativa, sempre disposto a compartilhar conhecimento e apoiar a equipe, curiosa e autodidata, com facilidade em aprender de forma independente. Gosto de desafios que me impulsionam a sair da zona de conforto e me motivam a compreender em profundidade os detalhes das tecnologias e do código que utilizo.
+                </p>
+                <p>
+                  Tenho também grande interesse em automação, dispositivos IoT e desenvolvimento/montagem de drones, áreas que me inspiram a explorar a integração entre software, hardware e criatividade.
+                </p>
+              </div>
+              <img src={enfeite} alt="" />
             </div>
 
-            {/* <div className="projetos">
-              <h3>Projeto 2</h3>
-              <img src={enfeite} alt="" />
-            </div> */}
+            <div className="projetos w-full flex flex-col lg:flex-row">
+              <div className="w-full lg:max-w-[35%]">
+                <h3 className="text-end">Projeto 1</h3>
+              </div>
+              <div className="w-full relative flex flex-col justify-center">
+                <img src={enfeite} alt="" className="absolute " />
+              </div>
+            </div>
+
+            <div className="projetos w-full flex flex-col lg:flex-row">
+              <div className="w-full lg:max-w-[35%]">
+                <h3 className="text-end">Projeto 2</h3>
+              </div>
+              <div className="w-full relative flex flex-col justify-center">
+                <img src={enfeite} alt="" className="absolute " />
+              </div>
+            </div>
+
           </div>
 
         </section>
-      </section>  
-    </>
+      </section>
+      <div className="contentNormal flex flex-col w-full">
+        Chora papai
+        <img src={enfeite} alt="" className="w-fit" />
+        <img src={enfeite} alt="" className="w-fit" />
+        <img src={enfeite} alt="" className="w-fit" />
+      </div>
+    </main>
   )
 }
 

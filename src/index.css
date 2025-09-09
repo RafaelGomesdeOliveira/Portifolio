@@ -293,7 +293,7 @@
 @import "tailwindcss";
 
 @theme {
-  --azul-escuro: #08081E;
+  --color-azul-escuro: #08081E;
   --font-Poppins: "Poppins", sans-serif; 
   --font-Montserrat: "Montserrat", sans-serif; 
 }

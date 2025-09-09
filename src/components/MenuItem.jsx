@@ -2,7 +2,7 @@ import Modal from "./Modal"
 
 export default function MenuItem(props) {
 
-    const { title, link, openNewTab = false, isOpen } = props
+    const { title, link, openNewTab = false, isOpen, children } = props
 
     const isFunction = typeof link === "function"
     return(
@@ -23,7 +23,7 @@ export default function MenuItem(props) {
                         isOpen={isOpen}
                         funct={link}
                     >
-
+                        Aqui: {children}
                     </Modal>
                 </>
                 )
