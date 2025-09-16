@@ -6,7 +6,7 @@ export default function MenuItem(props) {
 
     const isFunction = typeof link === "function"
     return(
-        <div className="relative group px-1 text-white/60 hover:text-white/80">
+        <div className="relative group lg:px-1 text-azul-escuro lg:text-white/60 lg:hover:text-white/80">
             {!isFunction ? (
                 <a href={link} target={openNewTab ? "_blank" : "_self"} className="relative  rounded-full ">
                     {title}
@@ -22,8 +22,9 @@ export default function MenuItem(props) {
                     <Modal
                         isOpen={isOpen}
                         funct={link}
+                        title={title}
                     >
-                        Aqui: {children}
+                        { children }
                     </Modal>
                 </>
                 )
