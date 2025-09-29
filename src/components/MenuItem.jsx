@@ -2,7 +2,7 @@ import Modal from "./Modal"
 
 export default function MenuItem(props) {
 
-    const { title, link, openNewTab = false, isOpen, children } = props
+    const { title, link, openNewTab = false, isOpen, children, showTitle = true } = props
 
     const isFunction = typeof link === "function"
     return(
@@ -22,6 +22,7 @@ export default function MenuItem(props) {
                     <Modal
                         isOpen={isOpen}
                         funct={link}
+                        showTitle={showTitle}
                         title={title}
                     >
                         { children }
