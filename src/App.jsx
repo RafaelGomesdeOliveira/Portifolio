@@ -3,7 +3,7 @@ import { CiLinkedin } from "react-icons/ci";
 import { LuInstagram } from "react-icons/lu";
 import { HiOutlineMail } from "react-icons/hi";
 import { FiGithub } from "react-icons/fi";
-import perfil from "./assets/img/perfil.png"
+import perfil from "./assets/img/perfil_2.png"
 import enfeite from "./assets/img/Enfeite.png"
 
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
@@ -177,17 +177,20 @@ export default function App() {
                             <h2 className=" font-medium text-[20px] lg:text-[22px]">
                               Rafael Gomes de Oliveira
                             </h2>
-                            <h3 className="text-[#394d70] font-medium">Desenvolvedor Front-End júnior</h3>
+                            <h3 className="text-[#444279] font-medium">Desenvolvedor Front-End júnior</h3>
                             <p className="text-xs lg:text-sm">React JS | JavaScript | Tailwind | CSS Intermediário | C++ </p>
                           </div>
                           <div className="flex flex-row gap-x-1 max-lg:justify-center">
                             <SocialButton
+                              link="https://www.instagram.com/gomezs_rafael/"
+                              openNewTab={true}
                               bgColor="bg-[linear-gradient(45deg,#FAE67F_0%,#EE472E_25%,#C61786_50%,#4754A3_100%)]"
                             >
                               <LuInstagram size={24} strokeWidth={1.75} className="min-w-6"/>
                             </SocialButton>
                             <SocialButton
-                              link="mailto:rafaelgomesdeoliveiraa@gmail.com"
+                              link="https://www.linkedin.com/in/rafael-gomes-de-oliveira-92a173334/"
+                              openNewTab={true}
                               bgColor="bg-[#0072b1]"
                             >
                               <CiLinkedin size={27} strokeWidth={0.33} className="min-w-[27px]"/>
@@ -195,12 +198,14 @@ export default function App() {
 
                             <SocialButton
                               link="mailto:rafaelgomesdeoliveiraa@gmail.com"
+                              openNewTab={true}
                               bgColor="bg-[#EA4335]"
                             >
                               <HiOutlineMail size={27} strokeWidth={1.6} className="min-w-[27px]"/>
                             </SocialButton>
                             <SocialButton
                               link="https://github.com/RafaelGomesdeOliveira"
+                              openNewTab={true}
                               bgColor="bg-black"
                             >
                               <FiGithub size={21} strokeWidth={2.2} className="min-w-[21px]"/>
@@ -256,7 +261,7 @@ export default function App() {
           </p>
         </section>
 
-        <section className="divBranca z-10 absolute w-screen bg-white text-black min-h-screen h-auto rotate-x-[90deg] rounded-[60px] scale-x-[0.42] top-[25vh] overflow-x-hidden">
+        <section className="divBranca z-[52] absolute w-screen bg-white text-black min-h-screen h-auto rotate-x-[90deg] rounded-[60px] scale-x-[0.42] top-[25vh] overflow-x-hidden">
           <div className="flex flex-col justify-center items-center h-screen w-full">
             <h2 className="h2MeConheca text-[20px] lg:text-[34px] font-semibold  text-center mb-8">
               Me conheça um pouco mais
