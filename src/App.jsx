@@ -268,7 +268,7 @@ export default function App() {
               Me conheça um pouco mais
             </h2>
 
-            <div className="sobreMim flex flex-col lg:flex-row items-center gap-y-6 text-sm text-white h-screen overflow-hidden px-4 py-8">
+            <div className="sobreMim flex flex-col lg:flex-row items-center gap-y-6 text-sm text-white h-[100dvh] px-4 py-8">
               <div className="flex-1 overflow-y-auto flex-shrink">
                 <h3 className="text-base font-semibold">Sobre mim</h3>
                 <p>
