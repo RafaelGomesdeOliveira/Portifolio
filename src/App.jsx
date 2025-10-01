@@ -5,6 +5,8 @@ import { HiOutlineMail } from "react-icons/hi";
 import { FiGithub } from "react-icons/fi";
 import perfil from "./assets/img/perfil_2.png"
 import enfeite from "./assets/img/Enfeite.png"
+import sobreMim from "./assets/img/sobre-mim.png"
+import sobreMimMobile from "./assets/img/sobre-mim-mobile.png"
 
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import writtenNumber from "written-number";
@@ -56,7 +58,6 @@ export default function App() {
         trigger: ".scrollReferenc",
         start: "top top",
         end: "+=2500",
-        markers: true,
         pin: true,
         scrub: 2,
       }
@@ -267,8 +268,8 @@ export default function App() {
               Me conheça um pouco mais
             </h2>
 
-            <div className="sobreMim flex flex-col lg:flex-row text-sm text-white">
-              <div>
+            <div className="sobreMim flex flex-col lg:flex-row items-center gap-y-6 text-sm text-white h-screen overflow-hidden px-4 py-8">
+              <div className="flex-1 overflow-y-auto flex-shrink">
                 <h3 className="text-base font-semibold">Sobre mim</h3>
                 <p>
                   Me chamo Rafael Gomes de Oliveira, sou Desenvolvedor Web Front-End Júnior. Sou formado em Técnico em Informática para a Internet pelo Instituto Federal Baiano - Campus Guanambi e possuo experiência com a plataforma de e-commerce Wake. Atualmente, dedico meus estudos ao React, GSAP, CSS avançado e Tailwind, buscando consolidar minhas habilidades em desenvolvimento de aplicações web.
@@ -280,8 +281,19 @@ export default function App() {
                   Tenho também grande interesse em automação, dispositivos IoT e desenvolvimento/montagem de drones, áreas que me inspiram a explorar a integração entre software, hardware e criatividade.
                 </p>
               </div>
-              <img src={enfeite} alt="" />
+
+              <picture>
+                <source media="(min-width: 1024px)" srcSet={sobreMim} />
+
+                <img
+                  src={sobreMimMobile}
+                  alt="Foto sobre mim"
+                  className="w-full object-contain lg:max-w-[533px] rounded-[20px] "
+                />
+              </picture>
+
             </div>
+
 
             <div className="projetos w-full flex flex-col lg:flex-row">
               <div className="w-full lg:max-w-[35%]">
