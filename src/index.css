@@ -330,3 +330,18 @@
     opacity: 0;
   }
 }
+.animate-gradient-x {
+  animation: gradient-x 2s linear infinite alternate;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+@keyframes gradient-x {
+  0% {
+    background-position-x: 0%;
+  }
+  100% {
+    background-position-x: 100%;
+  }
+}
+

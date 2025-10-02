@@ -264,22 +264,26 @@ export default function App() {
 
         <section className="divBranca z-[52] absolute w-screen bg-white text-black min-h-screen h-auto rotate-x-[90deg] rounded-[60px] scale-x-[0.42] top-[25vh] overflow-x-hidden">
           <div className="flex flex-col justify-center items-center h-screen w-full">
+            
             <h2 className="h2MeConheca text-[20px] lg:text-[34px] font-semibold  text-center mb-8">
               Me conheça um pouco mais
             </h2>
+            
 
-            <div className="sobreMim flex flex-col lg:flex-row items-center gap-y-6 text-sm text-white h-[100dvh] px-4 py-8">
-              <div className="flex-1 overflow-y-auto flex-shrink">
-                <h3 className="text-base font-semibold">Sobre mim</h3>
-                <p>
-                  Me chamo Rafael Gomes de Oliveira, sou Desenvolvedor Web Front-End Júnior. Sou formado em Técnico em Informática para a Internet pelo Instituto Federal Baiano - Campus Guanambi e possuo experiência com a plataforma de e-commerce Wake. Atualmente, dedico meus estudos ao React, GSAP, CSS avançado e Tailwind, buscando consolidar minhas habilidades em desenvolvimento de aplicações web.
-                </p>
-                <p>                 
-                  Atuo há {anoExperiencia} anos na área. Além do lado técnico, sou uma pessoa colaborativa, sempre disposto a compartilhar conhecimento e apoiar a equipe, ,me considero relativamente curioso e autodidata, com facilidade em aprender de forma independente. Gosto de desafios que me impulsionam a sair da zona de conforto e me motivam a compreender em profundidade os detalhes das tecnologias e das soluções que aplico.
-                </p>
-                <p className="hidden">
-                  Tenho também grande interesse em automação, dispositivos IoT e desenvolvimento/montagem de drones, áreas que me inspiram a explorar a integração entre software, hardware e criatividade.
-                </p>
+            <div className="sobreMim flex flex-col lg:flex-row gap-x-20 items-center gap-y-6 text-sm text-white/90 h-[100dvh] px-4 lg:px-[8vw] py-8 ">
+              <div className="flex-1 overflow-y-auto flex-shrink lg:max-w-[530px]">
+                <h3 className="text-xl w-fit lg:text-2xl font-medium mb-3 animate-gradient-x bg-[linear-gradient(45deg,#7A7ACC_0%,#D6D6FF_50%,#A3A3F2_100%)] bg-size-[400%_100%] ">Sobre mim</h3>
+                <div className="flex flex-col gap-y-3 lg:gap-y-4 text-justify lg:text-base">
+                  <p>
+                    Me chamo Rafael Gomes de Oliveira, sou Desenvolvedor Web Front-End Júnior. Sou formado em Técnico em Informática para a Internet pelo Instituto Federal Baiano - Campus Guanambi e possuo experiência com a plataforma de e-commerce Wake. Atualmente, dedico meus estudos ao React, GSAP, CSS avançado e Tailwind, buscando consolidar minhas habilidades em desenvolvimento de aplicações web.
+                  </p>
+                  <p>
+                    Atuo há {anoExperiencia} anos na área. Além do lado técnico, sou uma pessoa colaborativa, sempre disposto a compartilhar conhecimento e apoiar a equipe, me considero relativamente curioso e autodidata, com facilidade em aprender de forma independente. Gosto de desafios que me impulsionam a sair da zona de conforto e me motivam a compreender em profundidade os detalhes das tecnologias e das soluções que aplico.
+                  </p>
+                  <p >
+                    Tenho também grande interesse em automação, dispositivos IoT e desenvolvimento/montagem de drones, áreas que me inspiram a explorar a integração entre software, hardware e criatividade.
+                  </p>
+                </div>
               </div>
 
               <picture>
@@ -287,8 +291,8 @@ export default function App() {
 
                 <img
                   src={sobreMimMobile}
-                  alt="Foto sobre mim"
-                  className="w-full object-contain lg:max-w-[533px] rounded-[20px] "
+                  alt="Foto do desenvolvedor"
+                  className="w-full object-contain lg:max-w-[530px] rounded-[20px] "
                 />
               </picture>
 
