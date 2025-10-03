@@ -3,10 +3,13 @@ import { CiLinkedin } from "react-icons/ci";
 import { LuInstagram } from "react-icons/lu";
 import { HiOutlineMail } from "react-icons/hi";
 import { FiGithub } from "react-icons/fi";
-import perfil from "./assets/img/perfil_2.png"
+import perfil from "./assets/img/perfil-2.png"
 import enfeite from "./assets/img/Enfeite.png"
 import sobreMim from "./assets/img/sobre-mim.png"
 import sobreMimMobile from "./assets/img/sobre-mim-mobile.png"
+import viagem_1 from "./assets/img/viagem-1.png"
+import viagem_2 from "./assets/img/viagem-2.png"
+import viagem_3 from "./assets/img/viagem-3.png"
 
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import writtenNumber from "written-number";
@@ -83,9 +86,18 @@ export default function App() {
     const projetos = document.querySelectorAll(".projetos")
 
     projetos.forEach((element, index) => {
-      const img = element.querySelector("img")
+      let content;
+      const divImgs = element.querySelector(".contentImgs")
+      if(divImgs) {
+        content = element.querySelector(".contentImgs")
+      } else {
+        content = element.querySelector("img")
+      }
 
-      linhaDoTempo.fromTo(img,
+      if(!content) return
+      
+
+      linhaDoTempo.fromTo(content,
         {
           xPercent: 100,
           rotate: 340,
@@ -100,6 +112,22 @@ export default function App() {
         }
       )
 
+      if(divImgs) {
+        const imgs = element.querySelectorAll("img")
+
+        imgs.forEach(ele => {
+        linhaDoTempo.fromTo(ele,
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+          },
+        )
+        });
+
+      }
+
       linhaDoTempo.fromTo(element,
         {
           display: "none"
@@ -107,12 +135,12 @@ export default function App() {
         {
           display: "flex"
         },
-        "<"
+        ">"
       )
       console.log(projetos.length)
       console.log(index)
       if ((projetos.length - 1) != index) {
-        linhaDoTempo.to(img,
+        linhaDoTempo.to(content,
           {
             xPercent: 100,
             rotate: 340,
@@ -265,7 +293,7 @@ export default function App() {
         <section className="divBranca z-[52] absolute w-screen bg-white text-black min-h-screen h-auto rotate-x-[90deg] rounded-[60px] scale-x-[0.42] top-[25vh] overflow-x-hidden">
           <div className="flex flex-col justify-center items-center h-screen w-full">
             
-            <h2 className="h2MeConheca text-[20px] lg:text-[34px] font-semibold  text-center mb-8">
+            <h2 className="h2MeConheca text-[20px] lg:text-[34px] font-semibold  text-center mb-8 animate-gradient-x bg-[linear-gradient(45deg,#7A7ACC_0%,#D6D6FF_50%,#A3A3F2_100%)] bg-size-[400%_100%]">
               Me conheça um pouco mais
             </h2>
             
@@ -299,12 +327,23 @@ export default function App() {
             </div>
 
 
-            <div className="projetos w-full flex flex-col lg:flex-row">
-              <div className="w-full lg:max-w-[35%]">
-                <h3 className="text-end">Projeto 1</h3>
+            <div className="projetos w-full flex flex-col lg:flex-row justify-center items-center">
+              <div className="w-full lg:max-w-[530px]">
+                <h3 className="text-xl w-fit lg:text-2xl font-medium mb-3 animate-gradient-x bg-[linear-gradient(45deg,#7A7ACC_0%,#D6D6FF_50%,#A3A3F2_100%)] bg-size-[400%_100%] ">Viagem Internacional</h3>
+                <p>
+
+                </p>
               </div>
-              <div className="w-full relative flex flex-col justify-center">
-                <img src={enfeite} alt="" className="absolute " />
+              <div className="flex flex-wrap lg:max-w-[530px] contentImgs gap-4">
+                <picture className="w-full relative flex flex-col justify-center">
+                  <img src={viagem_1} alt="" className="w-full rounded-[20px]" />
+                </picture>
+                <picture className="w-full max-w-[calc(50%-8px)]">
+                  <img src={viagem_2} alt="" className="w-full rounded-[20px]" />
+                </picture>
+                <picture className="w-full max-w-[calc(50%-8px)]">
+                  <img src={viagem_3} alt="" className="w-full rounded-[20px]" />
+                </picture>
               </div>
             </div>
 
@@ -334,6 +373,7 @@ export default function App() {
 /*
   1 - Puxar as informações do github se tiver como e do linkedin, 
   2 - colocar um botão pra contato 
+  3 - Aparecer os projetos mais simples meio que de todos os lados e se juntarem no meio, fazer um cálculo pra se adaptar com a quantidade de imagens que tiver
   3 - botão pra baixar o currículo
   4 - Fazer meio que nem aquele site da nike, que vai rolando e vai aparecendo as informações dos projetos e quando scrollar ele joga a imagem pro lado direito e na hr aparecer outra imagem de outro projeto
 
